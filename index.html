@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assignment - Contact Card">
+    <title>Assignment - Contact Card</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#user").submit(function () {
+                var card = '<div class="card"><div class="wrapper"><div class="name"><h1 class="username">';
+                    card += $("input[name='fname']").val() + " " +  $('input[name="lname"]').val();
+                    card += '</h1><h3>Click for description!</h3></div><div class="description">';
+                    card += $("textarea[name='descrip']").val();
+                    card += '</div></div></div>';
+                $(".colright").prepend(card);
+                $("input").slice(0,2).val("");
+                $("textarea[name='descrip']").val("");
+                return false;
+            });
+            
+            $(".colright").on("click", ".card", function () {
+                $(this).find('.description').toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="colleft">
+            <form id="user">
+                <label for="fname">First Name:</label>
+                    <input type="text" name="fname" placeholder="First Name">
+                <label for="lname">Last Name:</label>
+                    <input type="text" name="lname" placeholder="Last Name">
+                <label for="descrip">Description:</label>
+                    <textarea name="descrip"  cols="38" rows="5" placeholder="Enter description"></textarea>
+                <input type="submit" id="submit" value="Add User"> </form>
+        </div>
+        <div class="colright"></div>
+    </div>
+</body>
+
+</html>
